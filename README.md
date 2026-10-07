@@ -4,11 +4,19 @@ A clean, high-performance web portal designed for centralized access to **Anwar*
 
 ---
 
+## ⚡ Firebase Realtime Instant Cloud Sync (অনলাইনে ইনস্ট্যান্ট সিঙ্ক)
+
+- **Firebase Realtime Database Integration**: গুগল ফায়ারবেস রিয়েলটাইম ডেটাবেসের মাধ্যমে ওয়েবসাইটটি সম্পূর্ণ ক্লাউড-সিঙ্কড!
+- **Instant Live Update Everywhere**: সেটিংস থেকে আনোয়ার বা মনিরের রিপোর্ট লিংক আপডেট করে **"Publish Links"** চাপামাত্র বিশ্বের যেকোনো প্রান্ত থেকে যে ডিভাইসেই ওয়েবসাইটটি ওপেন থাকুক না কেন, মুহূর্তের মধ্যে (মিলিসেকেন্ডে) কোনো পেজ রিলোড ছাড়াই নতুন লিংক লাইভ আপডেট হয়ে যাবে!
+- **Zero Server Hassle**: GitHub Pages-এ হোস্ট করলেও কোনো ব্যাকএন্ড সার্ভার ছাড়াই রিয়েলটাইমে লিংক সিঙ্ক হতে থাকবে।
+
+---
+
 ## 🔐 Password Protection (পাসওয়ার্ড সুরক্ষা)
 
 - **Admin Password**: Settings and link publishing are protected with an Admin Password.
 - **Default Password**: `admin123`
-- **How to Change Password**: Open **Settings** (enter `admin123`), scroll to the **"Admin Password Management"** section, enter your new password, and click **Publish Links**.
+- **How to Change Password**: Open **Settings** (enter `admin123`), scroll to the **"Admin Password Management"** section, enter your new password, and click **Publish Links**. পাসওয়ার্ড পরিবর্তন করলে তা-ও স্বয়ংক্রিয়ভাবে ক্লাউড ডেটাবেসে সিঙ্ক হয়ে সব ডিভাইসে কার্যকর হবে।
 
 ---
 

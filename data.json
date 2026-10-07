@@ -3,7 +3,7 @@
   "portalSubtitle": "Centralized Operational Equipment Effectiveness Reports & Logs",
   "openInNewTab": true,
   "adminPasswordHash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
-  "lastPublished": "2026-10-07T03:03:59.612Z",
+  "lastPublished": "2026-10-07T08:21:09.676Z",
   "reports": {
     "anwar": {
       "id": "anwar",
@@ -11,9 +11,9 @@
       "title": "Anwar's OEE Report",
       "department": "Production & Efficiency",
       "description": "Daily production rates, line availability, and machine efficiency logs.",
-      "url": "https://1drv.ms/x/c/9638f30d24b6f608/IQABQVa3ieH3TLP9Aq2gZn51AXJPy4l5iGaiyqLzczMNXl0?e=cNYWPa",
+      "url": "https://1drv.ms/x/c/9638f30d24b6f608/IQABQVa3ieH3TLP9Aq2gZn51AXJPy4l5iGaiyqLzczMNXl0?e=ewm8Rt",
       "notes": "Primary tracking sheet managed by Anwar",
-      "updatedAt": "2026-10-07T03:03:59.612Z"
+      "updatedAt": "2026-10-07T08:21:09.676Z"
     },
     "monir": {
       "id": "monir",
@@ -23,7 +23,7 @@
       "description": "Machine breakdown analysis, speed loss records, and operational quality data.",
       "url": "https://1drv.ms/x/c/9638f30d24b6f608/IQA0j4R_wBYhQ59-lDwFt1duAU7g57M93dE90FHskMYJC1U?e=pz86gG",
       "notes": "Primary tracking sheet managed by Monir",
-      "updatedAt": "2026-10-07T03:03:59.612Z"
+      "updatedAt": "2026-10-07T08:21:09.676Z"
     }
   }
 }

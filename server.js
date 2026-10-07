@@ -48,7 +48,7 @@ function setSecurityHeaders(res) {
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; script-src 'self' 'unsafe-inline'; frame-ancestors 'self';"
+    "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com; connect-src 'self' https://*.firebaseio.com wss://*.firebaseio.com https://*.googleapis.com https://*.google-analytics.com https://*.firebasestorage.app; script-src 'self' 'unsafe-inline' https://www.gstatic.com; frame-ancestors 'self';"
   );
 }
 

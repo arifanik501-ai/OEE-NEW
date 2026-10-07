@@ -1,0 +1,13 @@
+{
+  "name": "oee-report-portal",
+  "version": "1.0.0",
+  "description": "OEE Report centralized portal with link publisher for Anwar and Monir",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["oee", "report", "portal"],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OEE Report</title>
+  <meta name="description" content="Centralized operational equipment effectiveness dashboard for Anwar and Monir's reports.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css?v=4.1">
+</head>
+<body class="excel-glass-theme">
+  <!-- Fixed Ambient Mesh & Subtle Grid (Zero-Paint Scrolling) -->
+  <div class="ambient-glow-mesh" aria-hidden="true">
+    <div class="glow-orb orb-primary"></div>
+    <div class="glow-orb orb-secondary"></div>
+    <div class="excel-grid-overlay"></div>
+  </div>
+
+  <!-- Top Navigation -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="4" fill="url(#excelGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+            <path d="M7 8h10M7 12h10M7 16h10" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M12 7v10" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="excelGrad" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#107C41"/>
+                <stop offset="1" stop-color="#059669"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title" id="displayPortalTitle">OEE Report</span>
+          <span class="brand-tag">Operations</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="status-indicator" title="System Status">
+          <span class="pulse-dot"></span>
+          <span class="status-text" id="connectionStatus">Live</span>
+        </div>
+
+        <button type="button" class="btn btn-glass-secondary btn-sm" id="openGithubModalBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+        </button>
+
+        <button type="button" class="btn btn-glass-primary btn-sm" id="openSettingsBtn" aria-haspopup="dialog" aria-expanded="false">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Settings</span>
+          <kbd class="key-hint">S</kbd>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="main-content">
+    <div class="content-container">
+      
+      <!-- Clean, High-Impact Hero -->
+      <section class="hero-section">
+        <h1 class="hero-title">
+          <span class="gradient-text-emerald">OEE Reports</span>
+        </h1>
+        <p class="hero-description" id="displayPortalSubtitle">
+          Production performance, machine availability, and operational trackers.
+        </p>
+      </section>
+
+      <!-- Glass Bento Cards Grid (Anwar & Monir) -->
+      <section class="cards-grid" aria-label="Reports">
+        
+        <!-- Card 1: Anwar's Report -->
+        <article class="report-card glass-card" id="cardAnwar">
+          <div class="card-glow-reflection"></div>
+          
+          <div class="card-header">
+            <div class="user-meta">
+              <div class="user-avatar" aria-hidden="true">AR</div>
+              <div>
+                <h2 class="card-title" id="anwarCardTitle">Anwar's OEE Report</h2>
+                <div class="card-department" id="anwarCardDept">Production & Efficiency</div>
+              </div>
+            </div>
+            <span class="status-badge" id="anwarStatusBadge">Active</span>
+          </div>
+
+          <p class="card-description" id="anwarCardDesc">
+            Daily production rates, line availability, and machine efficiency logs.
+          </p>
+
+          <div class="target-link-box">
+            <div class="link-url-wrapper">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+              <span class="link-url-text" id="anwarUrlPreview">Not configured yet</span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <a href="#" class="btn btn-emerald-primary btn-block launch-btn" id="anwarLaunchBtn" target="_blank" rel="noopener noreferrer">
+              <span>Open Report</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+            <button type="button" class="btn btn-glass-outline copy-btn" id="anwarCopyBtn" title="Copy report link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="card-footer">
+            <span class="updated-time" id="anwarUpdatedTime">Recently</span>
+          </div>
+        </article>
+
+        <!-- Card 2: Monir's Report -->
+        <article class="report-card glass-card" id="cardMonir">
+          <div class="card-glow-reflection"></div>
+
+          <div class="card-header">
+            <div class="user-meta">
+              <div class="user-avatar" aria-hidden="true">MR</div>
+              <div>
+                <h2 class="card-title" id="monirCardTitle">Monir's OEE Report</h2>
+                <div class="card-department" id="monirCardDept">Maintenance & Downtime</div>
+              </div>
+            </div>
+            <span class="status-badge" id="monirStatusBadge">Active</span>
+          </div>
+
+          <p class="card-description" id="monirCardDesc">
+            Machine breakdown analysis, speed loss records, and operational quality data.
+          </p>
+
+          <div class="target-link-box">
+            <div class="link-url-wrapper">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+              <span class="link-url-text" id="monirUrlPreview">Not configured yet</span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <a href="#" class="btn btn-emerald-primary btn-block launch-btn" id="monirLaunchBtn" target="_blank" rel="noopener noreferrer">
+              <span>Open Report</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+            <button type="button" class="btn btn-glass-outline copy-btn" id="monirCopyBtn" title="Copy report link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="card-footer">
+            <span class="updated-time" id="monirUpdatedTime">Recently</span>
+          </div>
+        </article>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Clean Password Verification Modal -->
+  <div class="modal-backdrop" id="passwordModal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="pwdModalTitle" hidden>
+    <div class="modal-container modal-sm glass-modal">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="pwdModalTitle">Admin Access</h2>
+          <p class="modal-subtitle">Enter password to manage settings</p>
+        </div>
+        <button type="button" class="btn-icon" id="closePasswordModalBtn" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="passwordForm" class="modal-body">
+        <div class="form-row">
+          <label for="adminPasswordInput" class="form-label">Password</label>
+          <div class="input-with-button">
+            <input type="password" id="adminPasswordInput" class="form-input" required placeholder="Enter password" autocomplete="current-password">
+            <button type="button" class="btn btn-glass-secondary btn-sm" id="togglePasswordVisibilityBtn" title="Show/Hide">Show</button>
+          </div>
+          <div class="field-error" id="passwordError"></div>
+        </div>
+        <div class="modal-footer modal-footer-simple">
+          <button type="button" class="btn btn-glass-secondary" id="cancelPasswordBtn">Cancel</button>
+          <button type="submit" class="btn btn-emerald-primary" id="submitPasswordBtn">Unlock</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Settings / Link Publisher Drawer Modal -->
+  <div class="modal-backdrop" id="settingsModal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-container glass-modal">
+      
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="modalTitle">Settings</h2>
+          <p class="modal-subtitle">Configure report links and access</p>
+        </div>
+        <button type="button" class="btn-icon" id="closeSettingsBtn" aria-label="Close settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="settingsForm" class="modal-body" novalidate>
+        
+        <!-- Anwar's Config Group -->
+        <fieldset class="form-group-fieldset">
+          <legend class="fieldset-legend">
+            <span class="legend-badge">AR</span>
+            <span>Anwar's Report</span>
+          </legend>
+
+          <div class="form-row">
+            <label for="inputAnwarTitle" class="form-label">Title</label>
+            <input type="text" id="inputAnwarTitle" class="form-input" required maxlength="100" placeholder="Anwar's OEE Report">
+          </div>
+
+          <div class="form-row">
+            <label for="inputAnwarUrl" class="form-label">
+              <span>Target URL</span>
+              <span class="required-star">*</span>
+            </label>
+            <div class="input-with-button">
+              <input type="url" id="inputAnwarUrl" class="form-input" required placeholder="https://docs.google.com/spreadsheets/..." autocomplete="off">
+              <button type="button" class="btn btn-glass-secondary btn-sm test-btn" id="testAnwarUrlBtn" title="Test link">Test</button>
+            </div>
+            <div class="field-error" id="anwarUrlError"></div>
+          </div>
+
+          <div class="form-row">
+            <label for="inputAnwarDept" class="form-label">Department / Tag</label>
+            <input type="text" id="inputAnwarDept" class="form-input" maxlength="100" placeholder="Production & Efficiency">
+          </div>
+
+          <div class="form-row">
+            <label for="inputAnwarDesc" class="form-label">Description</label>
+            <input type="text" id="inputAnwarDesc" class="form-input" maxlength="250" placeholder="Daily production rates, line availability, and machine efficiency logs.">
+          </div>
+        </fieldset>
+
+        <!-- Monir's Config Group -->
+        <fieldset class="form-group-fieldset">
+          <legend class="fieldset-legend">
+            <span class="legend-badge">MR</span>
+            <span>Monir's Report</span>
+          </legend>
+
+          <div class="form-row">
+            <label for="inputMonirTitle" class="form-label">Title</label>
+            <input type="text" id="inputMonirTitle" class="form-input" required maxlength="100" placeholder="Monir's OEE Report">
+          </div>
+
+          <div class="form-row">
+            <label for="inputMonirUrl" class="form-label">
+              <span>Target URL</span>
+              <span class="required-star">*</span>
+            </label>
+            <div class="input-with-button">
+              <input type="url" id="inputMonirUrl" class="form-input" required placeholder="https://docs.google.com/spreadsheets/..." autocomplete="off">
+              <button type="button" class="btn btn-glass-secondary btn-sm test-btn" id="testMonirUrlBtn" title="Test link">Test</button>
+            </div>
+            <div class="field-error" id="monirUrlError"></div>
+          </div>
+
+          <div class="form-row">
+            <label for="inputMonirDept" class="form-label">Department / Tag</label>
+            <input type="text" id="inputMonirDept" class="form-input" maxlength="100" placeholder="Maintenance & Downtime">
+          </div>
+
+          <div class="form-row">
+            <label for="inputMonirDesc" class="form-label">Description</label>
+            <input type="text" id="inputMonirDesc" class="form-input" maxlength="250" placeholder="Machine breakdown analysis, speed loss records, and operational quality data.">
+          </div>
+        </fieldset>
+
+        <!-- Security / Change Password Group -->
+        <fieldset class="form-group-fieldset">
+          <legend class="fieldset-legend">
+            <span>Password Management</span>
+          </legend>
+
+          <div class="form-row">
+            <label for="inputNewPassword" class="form-label">Change Password (Leave blank to keep unchanged)</label>
+            <input type="password" id="inputNewPassword" class="form-input" maxlength="64" placeholder="Enter new password" autocomplete="new-password">
+          </div>
+        </fieldset>
+
+        <!-- Portal General Options -->
+        <fieldset class="form-group-fieldset">
+          <legend class="fieldset-legend">
+            <span>Preferences</span>
+          </legend>
+
+          <div class="form-row">
+            <label for="inputPortalTitle" class="form-label">Portal Title</label>
+            <input type="text" id="inputPortalTitle" class="form-input" maxlength="80" placeholder="OEE Report">
+          </div>
+
+          <div class="form-row">
+            <label for="inputPortalSubtitle" class="form-label">Portal Subtitle</label>
+            <input type="text" id="inputPortalSubtitle" class="form-input" maxlength="160" placeholder="Operational equipment effectiveness dashboard">
+          </div>
+
+          <div class="checkbox-row">
+            <label class="custom-checkbox">
+              <input type="checkbox" id="checkNewTab" checked>
+              <span class="checkmark"></span>
+              <span class="checkbox-label">Open links in a new browser tab</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="modal-footer">
+          <div class="backup-actions">
+            <button type="button" class="btn btn-ghost btn-sm" id="downloadDataJsonBtn" title="Download data.json">Download data.json</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="exportConfigBtn" title="Export backup">Backup</button>
+            <label class="btn btn-ghost btn-sm import-label" title="Import backup">
+              Import
+              <input type="file" id="importConfigFile" accept=".json" hidden>
+            </label>
+          </div>
+
+          <div class="primary-actions">
+            <button type="button" class="btn btn-glass-secondary" id="cancelSettingsBtn">Cancel</button>
+            <button type="submit" class="btn btn-emerald-primary" id="saveSettingsBtn">
+              <span>Publish Links</span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- GitHub Guide Modal -->
+  <div class="modal-backdrop" id="githubModal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="ghModalTitle" hidden>
+    <div class="modal-container glass-modal">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="ghModalTitle">Deploy to GitHub</h2>
+          <p class="modal-subtitle">Upload files directly without creating any folders</p>
+        </div>
+        <button type="button" class="btn-icon" id="closeGithubModalBtn" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        
+        <div class="guide-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3 class="step-title">ফোল্ডার ছাড়া শুধু ৫টি ফাইল সিলেক্ট করুন</h3>
+            <p class="step-desc">
+              প্রজেক্ট ফোল্ডার থেকে নিচের ৫টি ফাইল সিলেক্ট করে সরাসরি গিটহাবে আপলোড করতে পারবেন:
+            </p>
+            <div class="file-tags-list">
+              <span class="file-tag">index.html</span>
+              <span class="file-tag">style.css</span>
+              <span class="file-tag">app.js</span>
+              <span class="file-tag">data.json</span>
+              <span class="file-tag">favicon.svg</span>
+            </div>
+            <div style="margin-top: 10px;">
+              <a href="oee-report-github.zip" download="oee-report-github.zip" class="btn btn-glass-secondary btn-sm">
+                <span>Download Ready ZIP</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3 class="step-title">GitHub-এ আপলোড করুন (Upload files)</h3>
+            <p class="step-desc">
+              1. <strong>github.com</strong> এ গিয়ে <strong>New repository</strong> তৈরি করুন।<br>
+              2. <strong>"uploading an existing file"</strong> এ ক্লিক করে ফাইলগুলো ড্র্যাগ করে ছেড়ে দিন এবং <strong>Commit changes</strong> চাপুন।
+            </p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3 class="step-title">GitHub Pages থেকে ফ্রি লাইভ লিংক চালু করুন</h3>
+            <p class="step-desc">
+              Settings &gt; Pages &gt; Branch: <code>main</code> &gt; <code>/ (root)</code> &gt; <strong>Save</strong> চাপুন। ১ মিনিটের মধ্যে সাইট লাইভ হয়ে যাবে!
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer modal-footer-simple">
+        <button type="button" class="btn btn-emerald-primary" id="gotItGithubBtn">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="app.js?v=4.1"></script>
+</body>
+</html>
